@@ -1,4 +1,4 @@
 codegen
 =======
 
-Common library for code generating tools
+Common library for code generating tools.
