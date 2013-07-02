@@ -5,18 +5,18 @@ Version		= 0.1
 
 # Sources
 Modules[] =
-	CamlAst
-	Classify
-	Diagnostics
-	LocStringMap
-	Sloc
-	SlocMap
+  CamlAst
+  Classify
+  Diagnostics
+  LocStringMap
+  Sloc
+  SlocMap
 
 # Library dependencies
-Requires[] =
-	baselib
-	camlp4.quotations
-	sexplib.syntax
+OCaml-Requires[] =
+  baselib
+  camlp4.quotations
+  sexplib.syntax
 
 OCAMLINCLUDES	+= +camlp4/Camlp4Parsers
 
@@ -25,4 +25,4 @@ Flags. +=
   $|camlAst.ml|		= -syntax camlp4o
   $|sloc.ml|		= -syntax camlp4o
 
-ocaml-library ()
+library (.DEFAULT)
