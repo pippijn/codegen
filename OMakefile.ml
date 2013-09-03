@@ -16,7 +16,7 @@ install Library ".DEFAULT" [
 
   (* Library dependencies *)
   OCamlRequires [
-    "baselib";
+    "corelib";
     "camlp4.quotations";
     "sexplib.syntax";
   ];

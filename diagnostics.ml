@@ -29,18 +29,18 @@ let string_of_severity =
 
 exception Exit
 
-let diagnostics = BatDynArray.create ()
+let diagnostics = Stack.create ()
 
 let diagnostic severity at =
   let location = fst (Sloc._loc at) in
   (* Let the client code do the actual formatting. *)
   Format.ksprintf (fun message ->
     (* Add the diagnostic to the list. *)
-    BatDynArray.add diagnostics {
+    Stack.push {
       severity;
       location;
       message;
-    }
+    } diagnostics
   )
 
 let info    at = diagnostic Info    at
@@ -49,15 +49,14 @@ let error   at = diagnostic Error   at
 
 
 let exit_on_error () =
-  try
-    ignore (BatDynArray.index_of (fun { severity } -> severity == Error) diagnostics);
-    raise Exit
-  with Not_found ->
-    ()
+  Stack.iter (function
+    | { severity = Error } -> raise Exit
+    | _ -> ()
+  ) diagnostics
 
 
 let print () =
-  BatDynArray.iter (fun { severity; location; message } ->
+  Stack.iter (fun { severity; location; message } ->
     (* show diagnostic on stdout *)
     Printf.printf "%s:\n%s: %s\n"
       (Camlp4.PreCast.Loc.to_string location)
