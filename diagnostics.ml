@@ -6,8 +6,7 @@ type severity =
 type diagnostic = {
   severity  : severity;
   location  : Camlp4.PreCast.Loc.t;
-  message   : Buffer.t;
-  formatter : Format.formatter;
+  message   : string;
 }
 
 
@@ -34,18 +33,15 @@ let diagnostics = BatDynArray.create ()
 
 let diagnostic severity at =
   let location = fst (Sloc._loc at) in
-  (* Set up the error message formatter *)
-  let message = Buffer.create 80 in
-  let formatter = Format.formatter_of_buffer message in
-  (* Add the diagnostic to the list *)
-  BatDynArray.add diagnostics {
-    severity;
-    location;
-    message;
-    formatter;
-  };
-  (* Now let the client code do the actual formatting *)
-  Format.fprintf formatter
+  (* Let the client code do the actual formatting. *)
+  Format.ksprintf (fun message ->
+    (* Add the diagnostic to the list. *)
+    BatDynArray.add diagnostics {
+      severity;
+      location;
+      message;
+    }
+  )
 
 let info    at = diagnostic Info    at
 let warning at = diagnostic Warning at
@@ -61,13 +57,10 @@ let exit_on_error () =
 
 
 let print () =
-  BatDynArray.iter (fun { severity; location; message; formatter } ->
-    (* flush pending writes *)
-    Format.pp_print_flush formatter ();
-
+  BatDynArray.iter (fun { severity; location; message } ->
     (* show diagnostic on stdout *)
     Printf.printf "%s:\n%s: %s\n"
       (Camlp4.PreCast.Loc.to_string location)
       (string_of_severity severity)
-      (Buffer.contents message)
+      message
   ) diagnostics

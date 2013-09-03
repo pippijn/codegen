@@ -15,9 +15,20 @@ let parse_string syntax default _loc str =
   | str ->
       try
         CamlSyntax.Gram.parse_string syntax _loc str
-      with Loc.Exc_located (loc, Stream.Error msg) ->
-        Diagnostics.error (Sloc.of_loc loc ()) "while parsing \"%s\": %s" str msg;
-        raise Diagnostics.Exit
+      with Loc.Exc_located (loc, exn) ->
+        Diagnostics.error (Sloc.of_loc loc ())
+          "while parsing \"%s\":\n  %s" str (
+          match exn with
+          | Stream.Error msg ->
+              msg
+          | Lexer.Error.E error ->
+              Lexer.Error.to_string error
+          | exn ->
+              Printexc.to_string exn
+        );
+
+        default
+
 
 let ctyp_of_string      _loc = parse_string Syntax.ctyp      <:ctyp<unit>> _loc
 let expr_of_string      _loc = parse_string Syntax.expr      <:expr<()>>   _loc
