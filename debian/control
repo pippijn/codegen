@@ -10,8 +10,7 @@ Build-Depends:
   omake,
   valgrind,
   noweb,
-  libbatteries-ocaml-dev,
-  libderiving-ocsigen-ocaml-dev,
+  libbaselib-ocaml-dev,
   libsexplib-camlp4-dev,
   dh-ocaml,
   debhelper (>= 8.0.0)
