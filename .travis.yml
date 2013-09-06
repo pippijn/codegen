@@ -8,7 +8,7 @@ install:
    - cd baselib
    - dpkg-buildpackage -b -us -uc
    - cd ..
-   - dpkg -i *.deb
+   - sudo dpkg -i *.deb
    - cd codegen
 
 # whitelist
