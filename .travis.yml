@@ -3,13 +3,7 @@ script: dpkg-buildpackage -b -us -uc
 
 install:
    - sudo apt-get install omake noweb valgrind dh-ocaml libbatteries-ocaml-dev libsexplib-camlp4-dev libderiving-ocsigen-ocaml-dev
-   - cd ..
-   - git clone --depth=1 https://github.com/pippijn/baselib
-   - cd baselib
-   - dpkg-buildpackage -b -us -uc
-   - cd ..
-   - sudo dpkg -i *.deb
-   - cd codegen
+   - ./.depend baselib
 
 # whitelist
 branches:
