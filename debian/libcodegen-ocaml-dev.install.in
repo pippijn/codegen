@@ -1,0 +1,3 @@
+@OCamlStdlibDir@/codegen/*.a
+@OCamlStdlibDir@/codegen/*.cm[ix]
+@OCamlStdlibDir@/codegen/*.cmxa

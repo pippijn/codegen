@@ -1,0 +1,6 @@
+@OCamlStdlibDir@/codegen/META
+@OCamlStdlibDir@/codegen/*.cma
+@OCamlStdlibDir@/codegen/*.cmxs
+
+OPT: @OCamlStdlibDir@/stublibs/*.so
+OPT: @OCamlStdlibDir@/stublibs/*.so.owner
