@@ -1,3 +1,6 @@
+open CorePervasives
+
+
 type severity =
   | Info
   | Warning
@@ -56,10 +59,14 @@ let exit_on_error () =
 
 
 let print () =
+  (* Reverse the diagnostics stack, so we show the oldest first. *)
+  let reverse = Stack.create () in
+  Stack.iter (flip Stack.push reverse) diagnostics;
+
   Stack.iter (fun { severity; location; message } ->
     (* show diagnostic on stdout *)
     Printf.printf "%s:\n%s: %s\n"
       (Camlp4.PreCast.Loc.to_string location)
       (string_of_severity severity)
       message
-  ) diagnostics
+  ) reverse
