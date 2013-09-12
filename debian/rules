@@ -4,14 +4,13 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-include $(shell obuild --where)/debian/rules.common
-
-include /usr/share/ocaml/ocamlvars.mk
-
 DESTDIR = $(CURDIR)/debian/tmp
 
 OCAMLFIND_DESTDIR = $(DESTDIR)/$(OCAML_STDLIB_DIR)
 export OCAMLFIND_DESTDIR
+
+include $(shell obuild --where)/debian/rules.common
+include /usr/share/ocaml/ocamlvars.mk
 
 %:
 	dh --with ocaml $@
