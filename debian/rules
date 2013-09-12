@@ -9,6 +9,10 @@ DESTDIR = $(CURDIR)/debian/tmp
 OCAMLFIND_DESTDIR = $(DESTDIR)/$(OCAML_STDLIB_DIR)
 export OCAMLFIND_DESTDIR
 
+override_dh_auto_install: $(OCAMLFIND_DESTDIR)
+$(OCAMLFIND_DESTDIR):
+	mkdir -p $@
+
 include $(shell obuild --where)/debian/rules.common
 include /usr/share/ocaml/ocamlvars.mk
 
