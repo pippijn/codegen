@@ -1,0 +1,5 @@
+=head1 Codegen library
+
+Some general utility modules for OCaml code generation programs.
+
+L<Git repository|https://github.com/pippijn/codegen>
