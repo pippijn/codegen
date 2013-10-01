@@ -5,13 +5,13 @@ Maintainer: Pippijn van Steenhoven <pip88nl@gmail.com>
 Uploaders: 
   Pippijn van Steenhoven <pip88nl@gmail.com>
 Build-Depends:
+  debhelper (>= 8.0.0),
   obuild,
+  dh-ocaml,
   ocaml-nox (>= 3.12),
   ocaml-findlib,
   libbaselib-ocaml-dev,
-  libsexplib-camlp4-dev,
-  dh-ocaml,
-  debhelper (>= 8.0.0)
+  libsexplib-camlp4-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/pippijn/codegen
 Vcs-Git: git://github.com/pippijn/codegen
