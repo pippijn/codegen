@@ -2,16 +2,14 @@ Source: ocaml-codegen
 Section: ocaml
 Priority: optional
 Maintainer: Pippijn van Steenhoven <pip88nl@gmail.com>
-Uploaders: 
-  Pippijn van Steenhoven <pip88nl@gmail.com>
 Build-Depends:
-  debhelper (>= 8.0.0),
-  obuild,
-  dh-ocaml,
-  ocaml-nox (>= 3.12),
-  ocaml-findlib,
-  libbaselib-ocaml-dev,
-  libsexplib-camlp4-dev
+ debhelper (>= 8.0.0),
+ obuild,
+ dh-ocaml,
+ ocaml-nox (>= 3.12),
+ ocaml-findlib,
+ libbaselib-ocaml-dev,
+ libsexplib-camlp4-dev
 Standards-Version: 3.9.2
 Homepage: https://github.com/pippijn/codegen
 Vcs-Git: git://github.com/pippijn/codegen
@@ -22,16 +20,16 @@ Architecture: any
 Depends: ${ocaml:Depends}, ${misc:Depends}
 Provides: ${ocaml:Provides}
 Recommends: ocaml-findlib
-Description: Common library for OCaml projects
- This library contains some common modules I use for
- most of my projects.
+Description: Code generation library for OCaml
+ Common utilities for OCaml code generation and other compiler construction
+ tasks.
 
 Package: libcodegen-ocaml
 Architecture: any
 Depends: ${ocaml:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Provides: ${ocaml:Provides}
-Description: Common library for OCaml projects
- This library contains some common modules I use for
- most of my projects.
+Description: Code generation library for OCaml
+ Common utilities for OCaml code generation and other compiler construction
+ tasks.
  .
  This package contains the shared runtime libraries.
