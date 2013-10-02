@@ -1,4 +1,4 @@
-ocaml-codegen (0.1) precise; urgency=low
+codegen (0.1) precise; urgency=low
 
   * Initial release. (Closes: #9999)
 
