@@ -10,7 +10,7 @@ Build-Depends:
  ocaml-findlib,
  libbaselib-ocaml-dev,
  libsexplib-camlp4-dev
-Standards-Version: 3.9.2
+Standards-Version: 3.9.4
 Homepage: https://github.com/pippijn/codegen
 Vcs-Git: git://github.com/pippijn/codegen
 Vcs-Browser: https://github.com/pippijn/codegen
