@@ -1,0 +1,25 @@
+Name		= codegen
+Description	= Code generation helpers
+
+OCaml-Sources[] =
+  CamlAst
+  Classify
+  Diagnostics
+  LocStringMap
+  Sloc
+  SlocMap
+
+OCaml-Requires[] =
+  corelib
+  camlp4.quotations
+  camlp4.fulllib
+  sexplib.syntax
+
+OCAML_INCLUDES = +camlp4/Camlp4Parsers
+
+Flags. +=
+  $|camlAst.ml|	= -syntax camlp4o
+  $|sloc.ml|	= -syntax camlp4o
+
+TARGET = $(library-install)
+.DEFAULT: $(TARGET)
